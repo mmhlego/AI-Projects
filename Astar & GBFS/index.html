@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>-->
+		<meta charset="utf-8" />
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			background-color: #333;
+		}
+		body {
+			display: flex;
+			flex-direction: row-reverse;
+			align-items: center;
+			color: white;
+		}
+		canvas {
+			display: block;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
+		}
+
+		button {
+			width: 15px;
+			height: 15px;
+			border: none;
+			border-radius: 10px;
+			background-color: transparent;
+			cursor: pointer;
+		}
+		button:hover {
+			background-color: rgb(88, 201, 73);
+		}
+
+		#Selection {
+			z-index: 10;
+			width: 150px;
+			height: 300px;
+			margin-right: 50px;
+
+			border-radius: 10px;
+			border: solid white 1px;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: flex-start;
+		}
+
+		#Selection input,
+		#Selection label {
+			margin-left: 5px;
+		}
+
+		h2 {
+			align-self: center;
+		}
+
+		#RandomMap {
+			width: 110px;
+			height: 40px;
+			background-color: rgb(29, 135, 221);
+			align-self: center;
+			transition: all ease 300ms;
+		}
+
+		#RandomMap:hover {
+			color: white;
+			background-color: rgb(34, 189, 60);
+		}
+	</style>
+	<body>
+		<script src="sketch.js"></script>
+		<script src="node.js"></script>
+		<script src="algorithm.js"></script>
+		<script src="mapGenerator.js"></script>
+
+		<div id="Selection">
+			<h2>Algorithm</h2>
+
+			<div>
+				<input
+					name="Algorithm"
+					type="radio"
+					name="A*"
+					onclick="setAlgorithm(0)"
+				/><label>A*</label>
+			</div>
+			<div>
+				<input
+					name="Algorithm"
+					type="radio"
+					name="Optimized A*"
+					onclick="setAlgorithm(1)"
+					checked
+				/><label>Optimized A*</label>
+			</div>
+			<div>
+				<input
+					name="Algorithm"
+					type="radio"
+					name="GBFS"
+					onclick="setAlgorithm(2)"
+				/><label>GBFS</label>
+			</div>
+			<div>
+				<input
+					name="Algorithm"
+					type="radio"
+					name="Optimized GBFS"
+					onclick="setAlgorithm(3)"
+				/><label>Optimized GBFS</label>
+			</div>
+
+			<button id="RandomMap" onclick="generateRandomMap()">
+				Random map
+			</button>
+		</div>
+	</body>
+</html>
