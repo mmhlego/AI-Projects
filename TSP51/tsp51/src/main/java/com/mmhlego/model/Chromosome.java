@@ -31,7 +31,7 @@ public class Chromosome {
 		return str;
 	}
 
-	static Chromosome randomChromosome() {
+	public static Chromosome randomChromosome() {
 		ArrayList<Integer> nums = new ArrayList<>();
 		Chromosome ans = new Chromosome();
 
@@ -86,18 +86,67 @@ public class Chromosome {
 		}
 
 		index = crossoverPoint;
-
 		for (int i = 0; i < Constants.NODES_SIZE; i++) {
 			if (!s2.contains(parent1.genes[i].Number)) {
 				c2.genes[index++] = parent1.genes[i];
 			}
 		}
 
-		// System.out.println("Crossover point: " + crossoverPoint);
-		// parent1.printData();
-		// parent2.printData();
-		// c1.printData();
-		// c2.printData();
+		if (Constants.LOG_CROSSOVER) {
+			System.out.println("Crossover point: " + crossoverPoint);
+			parent1.printData();
+			parent2.printData();
+			c1.printData();
+			c2.printData();
+		}
+
+		Chromosome[] ans = new Chromosome[2];
+		ans[0] = c1;
+		ans[1] = c2;
+		return ans;
+	}
+
+	public static Chromosome[] PMX(Chromosome parent1, Chromosome parent2) {
+		Chromosome c1 = new Chromosome();
+		Chromosome c2 = new Chromosome();
+
+		Random random = new Random();
+		int first_point = random.nextInt(Constants.NODES_SIZE); // 0 - 50
+		int second_point = random.nextInt(Constants.NODES_SIZE - first_point) + first_point; // first - 50
+
+		Set<Integer> s1 = new HashSet<>();
+		Set<Integer> s2 = new HashSet<>();
+
+		for (int i = first_point; i <= second_point; i++) {
+			c1.genes[i] = parent1.genes[i];
+			c2.genes[i] = parent2.genes[i];
+
+			s1.add(parent1.genes[i].Number);
+			s2.add(parent2.genes[i].Number);
+		}
+
+		int index1 = 0;
+		int index2 = 0;
+		for (int i = 0; i < Constants.NODES_SIZE; i++) {
+			if (index1 == first_point)
+				index1 = second_point + 1;
+			if (index2 == first_point)
+				index2 = second_point + 1;
+
+			if (!s1.contains(parent2.genes[i].Number))
+				c1.genes[index1++] = parent2.genes[i];
+			if (!s2.contains(parent1.genes[i].Number))
+				c2.genes[index2++] = parent1.genes[i];
+		}
+
+		if (Constants.LOG_CROSSOVER) {
+			System.out.println("PMX points: [" + first_point + ", " + second_point + "]");
+			parent1.printData();
+			parent2.printData();
+			c1.printData();
+			c2.printData();
+		}
+
 		Chromosome[] ans = new Chromosome[2];
 		ans[0] = c1;
 		ans[1] = c2;

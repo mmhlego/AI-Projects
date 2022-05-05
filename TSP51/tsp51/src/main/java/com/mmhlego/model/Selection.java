@@ -3,11 +3,6 @@ package com.mmhlego.model;
 import java.util.Random;
 
 public class Selection {
-	// public static Society rouletteWheelSelection(Society society) {
-	// 	Society newSociety = new Society();
-	// 	return newSociety;
-	// }
-
 	public static Society tournamentSelection(Society society) {
 		Society newSociety = new Society();
 
@@ -30,9 +25,15 @@ public class Selection {
 
 		int crossoverCount = Constants.CROSSOVER_PERCENT * Constants.SOCIETY_SIZE / 100;
 		for (int i = 0; i < crossoverCount; i += 2) {
-			Chromosome[] crossovers = Chromosome.crossover(newSociety.members[i], newSociety.members[i + 1]);
-			newSociety.members[i] = crossovers[0];
-			newSociety.members[i + 1] = crossovers[1];
+			if (Constants.LOG_CROSSOVER)
+				System.out.println("Crossover #" + (i / 2 + 1));
+
+			Chromosome[] crossovers = (Constants.USE_PMX)
+					? Chromosome.PMX(newSociety.members[i], newSociety.members[i + 1])
+					: Chromosome.crossover(newSociety.members[i], newSociety.members[i + 1]);
+
+			newSociety.members[i] = crossovers[0].clone();
+			newSociety.members[i + 1] = crossovers[1].clone();
 		}
 
 		int mutatePercent = Constants.MUTATE_PERCENT * Constants.SOCIETY_SIZE / 100;
@@ -42,7 +43,7 @@ public class Selection {
 			newSociety.members[index].mutate();
 		}
 
-		int mirrorPercent = Constants.MIRROR_PERCENT * Constants.SOCIETY_SIZE / 100;
+		int mirrorPercent = Constants.INVERSION_PERCENT * Constants.SOCIETY_SIZE / 100;
 		for (int i = 0; i < mirrorPercent; i++) {
 			int index = random.nextInt(Constants.SOCIETY_SIZE - 1);
 
