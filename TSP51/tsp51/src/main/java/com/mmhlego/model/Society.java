@@ -6,8 +6,7 @@ import java.io.FileWriter;
 public class Society {
 	public Chromosome[] members = new Chromosome[Constants.SOCIETY_SIZE];
 
-	public Society() {
-	}
+	public Society() {}
 
 	public static Society randomSociety() {
 		Society s = new Society();
@@ -22,7 +21,9 @@ public class Society {
 	}
 
 	public void printData(int iteration) {
-		System.out.printf("=============================== Generation %d ===============================\n", iteration);
+		System.out.printf(
+				"=============================== Generation %d ===============================\n",
+				iteration);
 		// System.out.println("chromosome\tfitness");
 		// int sum = 0;
 		// for (Chromosome c : members)
@@ -32,10 +33,13 @@ public class Society {
 		double sum = 0;
 		for (Chromosome c : members) {
 			sum += c.fitness();
-			// c.printData();
-			// System.out.print(c.fitness() + " ");
+
+			if (Constants.LOG_CHROMOSOMES) {
+				if (c.fitness() == bestChromosome().fitness())
+					System.out.print("* ");
+				c.printData();
+			}
 		}
-		// System.out.println();
 
 		double average = sum / (double) Constants.SOCIETY_SIZE;
 		System.out.println("Average fitness: " + average);
