@@ -41,8 +41,4 @@ public class Gene {
 			e.printStackTrace();
 		}
 	}
-
-	private void printData() {
-		System.out.printf("Gene %d at [%d %d]\n", Number, x, y);
-	}
 }
