@@ -57,7 +57,8 @@ public class PageController implements Initializable {
 				try {
 					Process process = Runtime.getRuntime().exec("python chart.py");
 
-					BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+					BufferedReader reader =
+							new BufferedReader(new InputStreamReader(process.getInputStream()));
 					String line = "";
 					while ((line = reader.readLine()) != null) {
 						System.out.println(line);
@@ -68,7 +69,8 @@ public class PageController implements Initializable {
 			}).start();
 		});
 
-		SimulateCountTF.setOnKeyTyped(e -> {
+		SimulateCountTF.setOnKeyPressed(e -> {
+
 			if (e.getCode().equals(KeyCode.ENTER))
 				simulate();
 		});
@@ -83,7 +85,12 @@ public class PageController implements Initializable {
 			public void run() {
 				for (int i = 1; i <= count; i++) {
 					generation++;
-					society = Selection.tournamentSelection(society);
+					if (Constants.SELECTION_MODE == 1) {
+						society = Selection.tournamentSelection(society);
+					} else if (Constants.SELECTION_MODE == 2) {
+						society = Selection.proportionalSelection(society);
+					}
+
 					society.printData(i);
 
 					if (i % 100 == 0 || i == count) {
@@ -101,10 +108,12 @@ public class PageController implements Initializable {
 
 		ChromosomeList.getChildren().clear();
 		for (int i = 0; i < Constants.SOCIETY_SIZE; i++) {
-			ChromosomeList.getChildren().add(society.members[i].getView("Chromosome " + (i + 1) + " :"));
+			ChromosomeList.getChildren()
+					.add(society.members[i].getView("Chromosome " + (i + 1) + " :"));
 		}
 
-		BestChromosomesList.getChildren().add(society.bestChromosome().getView("Gen " + generation + " :"));
+		BestChromosomesList.getChildren()
+				.add(society.bestChromosome().getView("Gen " + generation + " :"));
 
 		showGraph(society.bestChromosome());
 	}
@@ -137,11 +146,9 @@ public class PageController implements Initializable {
 	}
 
 	private void drawLine(Gene g1, Gene g2) {
-		Line line = new Line(
-				g1.x * visualMultiplier + radius / 2,
-				g1.y * visualMultiplier + radius / 2,
-				g2.x * visualMultiplier + radius / 2,
-				g2.y * visualMultiplier + radius / 2);
+		Line line =
+				new Line(g1.x * visualMultiplier + radius / 2, g1.y * visualMultiplier + radius / 2,
+						g2.x * visualMultiplier + radius / 2, g2.y * visualMultiplier + radius / 2);
 		canvas.getChildren().add(line);
 	}
 }
