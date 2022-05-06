@@ -196,4 +196,16 @@ public class Chromosome {
 			this.genes[index1 + i] = backup.genes[index2 - i];
 		}
 	}
+
+	public static ArrayList<Chromosome> shuffleChromosomes(ArrayList<Chromosome> chromosomes) {
+		Random random = new Random();
+
+		ArrayList<Chromosome> ans = new ArrayList<>();
+
+		while (chromosomes.size() > 0) {
+			ans.add(chromosomes.remove(random.nextInt(chromosomes.size())).clone());
+		}
+
+		return ans;
+	}
 }

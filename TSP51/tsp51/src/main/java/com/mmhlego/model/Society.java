@@ -16,6 +16,18 @@ public class Society {
 		return s;
 	}
 
+	public void sortMembers() {
+		for (int i = 0; i < Constants.SOCIETY_SIZE - 1; i++) {
+			for (int j = i + 1; j < Constants.SOCIETY_SIZE; j++) {
+				if (members[i].fitness() > members[j].fitness()) {
+					Chromosome tmp = members[i].clone();
+					members[i] = members[j].clone();
+					members[j] = tmp.clone();
+				}
+			}
+		}
+	}
+
 	public void printData() {
 		printData(1);
 	}
@@ -24,11 +36,6 @@ public class Society {
 		System.out.printf(
 				"=============================== Generation %d ===============================\n",
 				iteration);
-		// System.out.println("chromosome\tfitness");
-		// int sum = 0;
-		// for (Chromosome c : members)
-		// 	sum += c.fitness();
-		// int average = sum / Constants.SOCIETY_SIZE;
 
 		double sum = 0;
 		for (Chromosome c : members) {
