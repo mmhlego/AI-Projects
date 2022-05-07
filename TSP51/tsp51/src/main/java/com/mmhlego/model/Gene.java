@@ -14,8 +14,8 @@ public class Gene {
 		this.y = y;
 	}
 
-	public static int dist(Gene n1, Gene n2) {
-		return (int) Math.sqrt(Math.pow((n1.x - n2.x), 2.0) + Math.pow((n1.y - n2.y), 2.0));
+	public static double dist(Gene n1, Gene n2) {
+		return Math.sqrt(Math.pow((n1.x - n2.x), 2.0) + Math.pow((n1.y - n2.y), 2.0));
 	}
 
 	// static 

@@ -6,7 +6,8 @@ import java.io.FileWriter;
 public class Society {
 	public Chromosome[] members = new Chromosome[Constants.SOCIETY_SIZE];
 
-	public Society() {}
+	public Society() {
+	}
 
 	public static Society randomSociety() {
 		Society s = new Society();
@@ -49,12 +50,12 @@ public class Society {
 		}
 
 		double average = sum / (double) Constants.SOCIETY_SIZE;
-		System.out.println("Average fitness: " + average);
-		System.out.println("Best fitness: " + bestChromosome().fitness());
+		System.out.println("Average fitness: " + String.format("%.2f", average));
+		System.out.println("Best fitness: " + String.format("%.2f", bestChromosome().fitness()));
 
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter("values.txt", true));
-			bw.write(average + " " + bestChromosome().fitness());
+			bw.write(average + " " + String.format("%.2f", bestChromosome().fitness()));
 			bw.newLine();
 			bw.close();
 		} catch (Exception e) {
@@ -63,7 +64,7 @@ public class Society {
 	}
 
 	public Chromosome bestChromosome() {
-		int best = Integer.MAX_VALUE;
+		double best = Double.MAX_VALUE;
 		Chromosome ans = new Chromosome();
 		for (Chromosome c : members) {
 			if (best > c.fitness()) {

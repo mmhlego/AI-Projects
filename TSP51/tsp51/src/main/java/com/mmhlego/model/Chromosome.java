@@ -12,8 +12,8 @@ import javafx.scene.layout.HBox;
 public class Chromosome {
 	public Gene[] genes = new Gene[Constants.NODES_SIZE];
 
-	public int fitness() { // the less the better
-		int cost = 0;
+	public double fitness() { // the less the better
+		double cost = 0;
 
 		for (int i = 0; i < Constants.NODES_SIZE; i++) {
 			cost += Gene.dist(genes[i], genes[(i + 1) % Constants.NODES_SIZE]);
@@ -177,7 +177,7 @@ public class Chromosome {
 		for (Gene gene : this.genes) {
 			text += gene.Number + ", ";
 		}
-		text += "   =>   " + fitness() + "  ";
+		text += "   =>   " + String.format("%.2f", fitness()) + "  ";
 
 		view.getChildren().add(new Label(text));
 
