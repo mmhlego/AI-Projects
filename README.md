@@ -14,7 +14,7 @@ In this project the BFS and GBFS algorithms are implemented to have a better und
 
 A sample output of this project is shown below:
 
-![sample output](./BFS%20%26%20DFS/result.png)
+![sample output](./BFS%20%26%20DFS/images/result.png)
 
 More information about this project is available in the [projects description](./BFS%20%26%20DFS/README.md).
 
