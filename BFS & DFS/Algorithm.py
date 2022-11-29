@@ -89,7 +89,7 @@ def DFS(adj):
 adj = [[False for _ in range(node_count)] for _ in range(node_count)]
 
 # Read data
-file = open("./test.txt")
+file = open("./edges.txt")
 for row in file:
     v, w = [int(i) for i in row.split()]
 

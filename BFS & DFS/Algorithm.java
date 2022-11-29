@@ -11,11 +11,8 @@ public class Algorithm {
 	static int targetNode = 0;
 
 	public static void main(String[] args) {
-		File data = new File("./test.txt");
+		File data = new File("./edges.txt");
 		Scanner reader;
-
-		// System.out.print("Start Node(1-" + nodeCount + ") : ");
-		// System.out.print("Target Node(1-" + nodeCount + ") (enter 0 for full traversal) : ");
 
 		startNode = Integer.parseInt(args[0]);
 		targetNode = Integer.parseInt(args[1]);
@@ -23,7 +20,7 @@ public class Algorithm {
 		try {
 			reader = new Scanner(data);
 		} catch (FileNotFoundException e) {
-			System.out.println("File not found (test.txt)");
+			System.out.println("File not found (edges.txt)");
 			return;
 		}
 
@@ -110,6 +107,7 @@ public class Algorithm {
 	}
 }
 
+
 // ====================================== Queue class
 class myQueue<T> {
 	ArrayList<T> data = new ArrayList<>();
@@ -126,6 +124,7 @@ class myQueue<T> {
 		return data.isEmpty();
 	}
 }
+
 
 // ====================================== Stack class
 class myStack<T> {
