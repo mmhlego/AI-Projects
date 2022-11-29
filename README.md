@@ -20,8 +20,14 @@ More information about this project is available in the [projects description](.
 
 #### A\* & GBFS Algorithm implementation
 
-Description
+This project is visual representation of both **_A\*_** and **_GBFS_** algorithms written in javascript language and visualized using [p5.js](https://www.p5js.org) library.
 
-#### Hebb Network - X/O Recognition
+![Sample path](./Astar%20%26%20GBFS/images/sample-path.png)
 
-Description
+More information about this project is available in the [projects description](./Astar%20%26%20GBFS/README.md).
+
+#### Genetic Algorithm - f(x) = x^2
+
+#### Genetic Algorithm - N-queens problem
+
+#### Genetic Algorithm - Traveling sales person
