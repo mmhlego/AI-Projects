@@ -15,6 +15,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 		stage.setResizable(false);
+		stage.setTitle("Traveling Salesperson Simulator");
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainPage.fxml"));
 		stage.setScene(new Scene(fxmlLoader.load()));
 		stage.show();

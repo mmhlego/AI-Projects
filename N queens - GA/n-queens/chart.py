@@ -25,6 +25,6 @@ plt.legend(loc="upper right")
 # plt.xlim(0, Values[-1])
 plt.ylim(0, Average[0]+25)
 
-plt.title('TSP51 - Genetic Algorithm', fontsize=14)
+plt.title('N-queens - Genetic Algorithm', fontsize=14)
 plt.grid(False)
 plt.show()

@@ -48,7 +48,7 @@ In this project we focus on solving the famous [n-queens problem](https://en.wik
 
 Here is an image from the application:
 
-![Main Page Image](./N%20queens%20-%20GA/images/)
+![Main Page Image](./N%20queens%20-%20GA/images/Main%20Page.png)
 
 More information about this project is available in the [projects description](<./N queens - GA/README.md>).
 

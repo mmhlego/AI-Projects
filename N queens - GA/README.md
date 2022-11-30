@@ -4,4 +4,4 @@ In this project we focus on solving the famous [n-queens problem](https://en.wik
 
 Here is an image from the application:
 
-![Main Page Image](./images/)
+![Main Page Image](./images/Main%20Page.png)

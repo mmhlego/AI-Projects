@@ -55,7 +55,9 @@ public class PageController implements Initializable {
 		ToggleBTN.setOnMouseClicked(e -> {
 			new Thread(() -> {
 				try {
-					Process process = Runtime.getRuntime().exec("python chart.py");
+					boolean isWindows = System.getProperty("os.name").startsWith("Windows");
+					Process process = Runtime.getRuntime()
+							.exec((isWindows ? "python" : "python3") + " chart.py");
 
 					BufferedReader reader =
 							new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -154,7 +156,7 @@ public class PageController implements Initializable {
 			circle.setLayoutY(i * size + size / 2);
 
 			circle.setStroke(Color.DARKGRAY);
-			circle.setFill(Color.LIGHTBLUE);
+			circle.setFill(Color.ORANGE);
 			circle.setRadius(radius);
 
 			canvas.getChildren().add(circle);
