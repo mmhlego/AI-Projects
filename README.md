@@ -28,6 +28,20 @@ More information about this project is available in the [projects description](.
 
 #### Genetic Algorithm - f(x) = x^2
 
+This is the first of three projects which use [Genetic Algorithm](https://en.wikipedia.org/wiki/Genetic_algorithm) to solve a certain problem.
+
+In this project we try to maximize the value of the following function:
+
+$$f(x) = x^2$$
+
+We try to achieve this goal using **Genetic Algorithm** principles like mutation, crossover & etc and record this process.
+
+A single generation of our programmed is shown as below:
+
+![Sample Generation](<./f(x)%20%3D%20x2%20-%20GA/images/Generation.png>)
+
+More information about this project is available in the [projects description](<./f(x)%20%3D%20x2%20-%20GA/README.md>).
+
 #### Genetic Algorithm - N-queens problem
 
 #### Genetic Algorithm - Traveling sales person
