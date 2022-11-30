@@ -44,4 +44,18 @@ More information about this project is available in the [projects description](<
 
 #### Genetic Algorithm - N-queens problem
 
+In this project we focus on solving the famous [n-queens problem](https://en.wikipedia.org/wiki/Eight_queens_puzzle) using genetic algorithm. TTh algorithm in written in java language and represented using JavaFX library.
+
+Here is an image from the application:
+
+![Main Page Image](./N%20queens%20-%20GA/images/)
+
+More information about this project is available in the [projects description](<./N queens - GA/README.md>).
+
 #### Genetic Algorithm - Traveling sales person
+
+In this project we use genetic algorithm to solve the [Traveling Salesperson](https://en.wikipedia.org/wiki/Travelling_salesman_problem) optimization problem. This is an [NP-Hard](https://en.wikipedia.org/wiki/NP-hardness) problem and there is no polynomial answer for it. Thus we try to guess an answer and optimize it as much as possible.
+
+Here is an image from the application:
+
+![Main Page Image](./TSP51/images/Main%20Page.png)
