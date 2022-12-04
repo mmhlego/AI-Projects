@@ -1,5 +1,5 @@
 #define chromosome uint8_t		// Chromosome structure
-#define Size 10 				// Size of society
+#define Size 10 				// Size of population
 #define MaxIterationCount 20	// Number of iterations
 #define ChromosomeLength 8		// Chromosome length
 #define MutationPercent 5		// Probability to mutate

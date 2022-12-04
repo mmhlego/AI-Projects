@@ -4,16 +4,16 @@ using namespace std;
 
 // ============================================================================== help functions
 
-vector<chromosome> shuffle_society(vector<chromosome> society) {
-	vector<chromosome> temp_society;
+vector<chromosome> shuffle_population(vector<chromosome> population) {
+	vector<chromosome> temp_population;
 
 	for (int i = 0;i < Size;i++) {
-		int index = rand() % society.size();
-		temp_society.push_back(society[index]);
-		society.erase(society.begin() + index);
+		int index = rand() % population.size();
+		temp_population.push_back(population[index]);
+		population.erase(population.begin() + index);
 	}
 
-	return temp_society;
+	return temp_population;
 }
 
 vector<chromosome> fill_mating_pool(vector<chromosome> mating_pool) {
@@ -26,17 +26,17 @@ vector<chromosome> fill_mating_pool(vector<chromosome> mating_pool) {
 	return mating_pool;
 }
 
-bool all_is_same(chromosome society[Size]) {
-	for (int i = 1;i < Size;i++)if (society[i] != society[0]) return false;
+bool all_is_same(chromosome population[Size]) {
+	for (int i = 1;i < Size;i++)if (population[i] != population[0]) return false;
 	return true;
 }
 
 // ============================================================================== main selection functions
 
-void roulette_wheel_selection(chromosome society[Size]) {
+void roulette_wheel_selection(chromosome population[Size]) {
 	int sum = 0;
 	for (int i = 0;i < Size;i++) {
-		chromosome x = society[i];
+		chromosome x = population[i];
 		sum += x * x;
 	}
 
@@ -44,27 +44,27 @@ void roulette_wheel_selection(chromosome society[Size]) {
 	vector<chromosome> mating_pool;
 
 	for (int i = 0;i < Size;i++) {
-		chromosome x = society[i];
+		chromosome x = population[i];
 		int count = (int)round(double(f(x)) / double(average));
 
 		for (int j = 0;j < count;j++) { mating_pool.push_back(x); }
 	}
 
 	mating_pool = fill_mating_pool(mating_pool);
-	mating_pool = shuffle_society(mating_pool);
+	mating_pool = shuffle_population(mating_pool);
 
 	for (int i = 0;i < Size;i += 2) {
-		crossover(mating_pool[i], mating_pool[i + 1], &society[i], &society[i + 1]);
+		crossover(mating_pool[i], mating_pool[i + 1], &population[i], &population[i + 1]);
 	}
 
 	for (int i = 0;i < Size;i++) {
 		if (rand() % 100 < MutationPercent) {
-			mutate(&society[i]);
+			mutate(&population[i]);
 		}
 	}
 }
 
-void tournament_selection(chromosome society[Size]) {
+void tournament_selection(chromosome population[Size]) {
 	vector<chromosome> mating_pool;
 
 	for (int i = 0;i < Size;i++) {
@@ -72,7 +72,7 @@ void tournament_selection(chromosome society[Size]) {
 		int best_fitness = 0;
 
 		for (int j = 0;j < TournamentSize;j++) {
-			chromosome x = society[rand() % Size];
+			chromosome x = population[rand() % Size];
 			if (f(x) > best_fitness) {
 				best_fitness = f(x);
 				best = x;
@@ -84,12 +84,12 @@ void tournament_selection(chromosome society[Size]) {
 
 	for (int i = 0;i < Size;i++) {
 		if (rand() % 100 < MutationPercent) {
-			mutate(&society[i]);
+			mutate(&population[i]);
 		} else if (i < Size - 1) {
-			crossover(mating_pool[i], mating_pool[i + 1], &society[i], &society[i + 1]);
+			crossover(mating_pool[i], mating_pool[i + 1], &population[i], &population[i + 1]);
 			i++;
 		}
 	}
 
-	// if (all_is_same(society)) mutate(&society[rand() % Size]);
+	// if (all_is_same(population)) mutate(&population[rand() % Size]);
 }

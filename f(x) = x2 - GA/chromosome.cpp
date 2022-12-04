@@ -65,15 +65,15 @@ void mutate(chromosome* ch) {
 	*ch = string_to_chromosome(str);
 }
 
-chromosome best_chromosome(chromosome society[Size]) {
+chromosome best_chromosome(chromosome population[Size]) {
 	int max_f = 0;
 	chromosome best = 0;
 
 	for (int i = 0;i < Size;i++) {
-		int f_x = f(society[i]);
+		int f_x = f(population[i]);
 		if (f_x > max_f) {
 			max_f = f_x;
-			best = society[i];
+			best = population[i];
 		}
 	}
 
