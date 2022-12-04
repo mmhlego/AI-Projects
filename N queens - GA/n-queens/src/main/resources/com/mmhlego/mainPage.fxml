@@ -26,7 +26,7 @@
             <VBox fx:id="ChromosomeList" minHeight="190.0" minWidth="240.0" style="-fx-background-color: white;" />
          </content>
       </ScrollPane>
-      <Label alignment="CENTER" layoutX="540.0" layoutY="65.0" prefHeight="25.0" prefWidth="246.0" text="Society Chromosomes" />
+      <Label alignment="CENTER" layoutX="540.0" layoutY="65.0" prefHeight="25.0" prefWidth="246.0" text="Population Chromosomes" />
       <ScrollPane layoutX="539.0" layoutY="336.0" prefHeight="100.0" prefWidth="246.0">
          <content>
             <VBox fx:id="BestChromosomesList" minHeight="95.0" minWidth="240.0" style="-fx-background-color: white;" />

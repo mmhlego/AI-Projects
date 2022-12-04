@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Selection {
-	public static Society proportionalSelection(Society society) {
-		Society newSociety = new Society();
+	public static Population proportionalSelection(Population population) {
+		Population newPopulation = new Population();
 		Random random = new Random();
 
-		society.sortMembers();
+		population.sortMembers();
 
 		ArrayList<Chromosome> leftoverParents = new ArrayList<>();
 		for (int i = 0; i < Constants.SOCIETY_SIZE / 2; i++) {
-			leftoverParents.add(society.members[i].clone());
-			newSociety.members[i] = society.members[i].clone();
+			leftoverParents.add(population.members[i].clone());
+			newPopulation.members[i] = population.members[i].clone();
 		}
 
 		leftoverParents = Chromosome.shuffleChromosomes(leftoverParents);
 
 		for (int i = Constants.SOCIETY_SIZE / 2; i < Constants.SOCIETY_SIZE; i += 2) {
 			if (leftoverParents.size() == 1) {
-				newSociety.members[i] = leftoverParents.get(0).clone();
+				newPopulation.members[i] = leftoverParents.get(0).clone();
 				break;
 			}
 
@@ -30,46 +30,46 @@ public class Selection {
 			Chromosome[] offsprings = (Constants.USE_PMX) ? Chromosome.PMX(parent1, parent2)
 					: Chromosome.crossover(parent1, parent2);
 
-			newSociety.members[i] = offsprings[0].clone();
-			newSociety.members[i + 1] = offsprings[1].clone();
+			newPopulation.members[i] = offsprings[0].clone();
+			newPopulation.members[i + 1] = offsprings[1].clone();
 		}
 
-		newSociety.members[Constants.SOCIETY_SIZE - 1] = society.bestChromosome().clone();
+		newPopulation.members[Constants.SOCIETY_SIZE - 1] = population.bestChromosome().clone();
 
 		int mutatePercent = Constants.MUTATE_PERCENT * Constants.SOCIETY_SIZE / 100;
 		for (int i = 0; i < mutatePercent; i++) {
 			int index = random.nextInt(Constants.SOCIETY_SIZE - 1);
 
-			newSociety.members[index].mutate();
+			newPopulation.members[index].mutate();
 		}
 
 		int mirrorPercent = Constants.INVERSION_PERCENT * Constants.SOCIETY_SIZE / 100;
 		for (int i = 0; i < mirrorPercent; i++) {
 			int index = random.nextInt(Constants.SOCIETY_SIZE - 1);
 
-			newSociety.members[index].mirrorSection();
+			newPopulation.members[index].mirrorSection();
 		}
 
-		return newSociety;
+		return newPopulation;
 	}
 
-	public static Society tournamentSelection(Society society) {
-		Society newSociety = new Society();
+	public static Population tournamentSelection(Population population) {
+		Population newPopulation = new Population();
 
 		Random random = new Random();
 		for (int i = 0; i < Constants.SOCIETY_SIZE - 1; i++) {
-			Chromosome best = society.members[random.nextInt(Constants.SOCIETY_SIZE)].clone();
+			Chromosome best = population.members[random.nextInt(Constants.SOCIETY_SIZE)].clone();
 			for (int j = 1; j < Constants.TOURNAMENT_SIZE; j++) {
 				int index = random.nextInt(Constants.SOCIETY_SIZE);
 
-				if (society.members[index].fitness() < best.fitness()) {
-					best = society.members[index].clone();
+				if (population.members[index].fitness() < best.fitness()) {
+					best = population.members[index].clone();
 				}
 			}
 
-			newSociety.members[i] = best.clone();
+			newPopulation.members[i] = best.clone();
 		}
-		newSociety.members[Constants.SOCIETY_SIZE - 1] = society.bestChromosome().clone(); // elitism
+		newPopulation.members[Constants.SOCIETY_SIZE - 1] = population.bestChromosome().clone(); // elitism
 
 		int crossoverCount = Constants.CROSSOVER_PERCENT * Constants.SOCIETY_SIZE / 100;
 		for (int i = 0; i < crossoverCount; i += 2) {
@@ -77,27 +77,27 @@ public class Selection {
 				System.out.println("Crossover #" + (i / 2 + 1));
 
 			Chromosome[] crossovers = (Constants.USE_PMX)
-					? Chromosome.PMX(newSociety.members[i], newSociety.members[i + 1])
-					: Chromosome.crossover(newSociety.members[i], newSociety.members[i + 1]);
+					? Chromosome.PMX(newPopulation.members[i], newPopulation.members[i + 1])
+					: Chromosome.crossover(newPopulation.members[i], newPopulation.members[i + 1]);
 
-			newSociety.members[i] = crossovers[0].clone();
-			newSociety.members[i + 1] = crossovers[1].clone();
+			newPopulation.members[i] = crossovers[0].clone();
+			newPopulation.members[i + 1] = crossovers[1].clone();
 		}
 
 		int mutatePercent = Constants.MUTATE_PERCENT * Constants.SOCIETY_SIZE / 100;
 		for (int i = 0; i < mutatePercent; i++) {
 			int index = random.nextInt(Constants.SOCIETY_SIZE - 1);
 
-			newSociety.members[index].mutate();
+			newPopulation.members[index].mutate();
 		}
 
 		int mirrorPercent = Constants.INVERSION_PERCENT * Constants.SOCIETY_SIZE / 100;
 		for (int i = 0; i < mirrorPercent; i++) {
 			int index = random.nextInt(Constants.SOCIETY_SIZE - 1);
 
-			newSociety.members[index].mirrorSection();
+			newPopulation.members[index].mirrorSection();
 		}
 
-		return newSociety;
+		return newPopulation;
 	}
 }

@@ -3,13 +3,13 @@ package com.mmhlego.model;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-public class Society {
+public class Population {
 	public Chromosome[] members = new Chromosome[Constants.SOCIETY_SIZE];
 
-	public Society() {}
+	public Population() {}
 
-	public static Society randomSociety() {
-		Society s = new Society();
+	public static Population randomPopulation() {
+		Population s = new Population();
 		for (int i = 0; i < Constants.SOCIETY_SIZE; i++) {
 			s.members[i] = Chromosome.randomChromosome();
 		}

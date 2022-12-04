@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import com.mmhlego.model.Chromosome;
 import com.mmhlego.model.Constants;
 import com.mmhlego.model.Selection;
-import com.mmhlego.model.Society;
+import com.mmhlego.model.Population;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,15 +41,15 @@ public class PageController implements Initializable {
 	@FXML
 	private Button ToggleBTN;
 
-	Society society;
+	Population population;
 	int generation = 1;
 	double visualMultiplier = 6.5;
 	double radius = 10;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		society = Society.randomSociety();
-		society.printData();
+		population = Population.randomPopulation();
+		population.printData();
 		showData();
 
 		ToggleBTN.setOnMouseClicked(e -> {
@@ -88,12 +88,12 @@ public class PageController implements Initializable {
 				for (int i = 1; i <= count; i++) {
 					generation++;
 					if (Constants.SELECTION_MODE == 1) {
-						society = Selection.tournamentSelection(society);
+						population = Selection.tournamentSelection(population);
 					} else if (Constants.SELECTION_MODE == 2) {
-						society = Selection.proportionalSelection(society);
+						population = Selection.proportionalSelection(population);
 					}
 
-					society.printData(i);
+					population.printData(i);
 
 					if (i % 100 == 0 || i == count) {
 						Platform.runLater(() -> {
@@ -111,13 +111,13 @@ public class PageController implements Initializable {
 		ChromosomeList.getChildren().clear();
 		for (int i = 0; i < Constants.SOCIETY_SIZE; i++) {
 			ChromosomeList.getChildren()
-					.add(society.members[i].getView("Chromosome " + (i + 1) + " :"));
+					.add(population.members[i].getView("Chromosome " + (i + 1) + " :"));
 		}
 
 		BestChromosomesList.getChildren()
-				.add(society.bestChromosome().getView("Gen " + generation + " :"));
+				.add(population.bestChromosome().getView("Gen " + generation + " :"));
 
-		showGraph(society.bestChromosome());
+		showGraph(population.bestChromosome());
 	}
 
 	boolean minimumAlertShown = false;
