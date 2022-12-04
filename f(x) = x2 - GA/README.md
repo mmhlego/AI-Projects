@@ -42,6 +42,78 @@ This project is written in C++ language and no third-party library was used.
 
 -   `best-chromosome`: Returns the chromosome with the best fitness in a given population.
 
-`selections.cpp`: ...
+`selections.cpp`: A selection algorithm is an algorithm to generate new population from the current one. Two selection algorithms are implemented in this file:
 
-`main.cpp`: ...
+-   [Roulette Wheel Selection](https://www.baeldung.com/cs/genetic-algorithms-roulette-selection): In this algorithm, first we calculate the average fitness of our population. Then creates a new mating pool and copies certain amount of each chromosome to it _(amount = fitness(chromosome) / average_fitness)_
+
+    Then algorithm shuffles the mating pool and applies crossover operation on the 1st and 2nd, 3rd and 4th and ... chromosomes and moves the generated offsprings to a new population.
+
+    In the final step the algorithm randomly mutates some of the chromosomes in the new population _(according to **MutationPercent**)_ and returns the new population.
+
+-   [Tournament Selection](https://en.wikipedia.org/wiki/Tournament_selection): This algorithm first creates an empty mating pool for the selected chromosomes and starts filling the pool.
+
+    Filling process is simple. First creates groups of **TournamentSize** chromosomes and copies random chromosomes from the population to it. Then finds the best chromosome (one with the best fitness) among them and copies it to the mating pool. This process executes for **Size** amount of times so that mating pool fills with chromosomes.
+
+    After that like the previous selection, is splits mating pool to pairs and applies crossover on them and copies the offsprings to the new population.
+
+    Finally the algorithm randomly mutates some of the chromosomes in the new population _(according to **MutationPercent**)_ and returns the new population.
+
+`main.cpp`: This is the main entry of our program. This file handles five important tasks:
+
+-   Generating an initial random population
+-   Log all the information about the population
+-   Generate new population from the previous one
+-   Check the stopping conditions if they hold or not
+-   Stop the iteration if needed
+
+    Also there is three stopping conditions:
+
+    1. If the current iteration is more than the **maxIterationCount** determined by the user.
+    2. If the best of current population is worst than three latest populations
+    3. If maximum value for a chromosome is reached _(Maximum value = 65025)_
+
+    If any of these conditions is true, the algorithm will stop.
+
+<hr>
+
+## Running the project
+
+To run this project first set all your desired settings in the [constants.cpp](./constants.cpp) file.
+
+After that, to run the algorithm with the given settings, run the command according to your operating system:
+
+### Windows
+
+In windows simply execute the following command in the project directory:
+
+```
+Run.bat
+```
+
+Then the program starts executing and logs all the details in the [out.txt](./out.txt) file.
+
+### Linux
+
+In linux execute the following command in the project directory:
+
+```bash
+./Run.sh
+```
+
+_Note: If you get the following error while running in linux:_
+
+```
+bash: ./Run.bat: Permission denied
+```
+
+_simply run this command to solve it:_
+
+```
+sudo chmod +x ./Run.sh
+```
+
+_This command allows the Run.sh file to be executed by the user._
+
+After executing the command, the algorithms wil starts executing and outputs the results to the [out.txt](./out.txt) file as shown below.
+
+![sample output](./images/Generation.png)
