@@ -6,8 +6,6 @@ A sample output of this project is shown below:
 
 Although project is written in both java and python languages but the structure of the algorithm is the same in both of them.
 
-<hr>
-
 ## Project Files
 
 `Algorithm.java`: This file contains the BFS and DFS algorithms written in java language.
@@ -51,8 +49,6 @@ By running this command, the java file will be executed and the results will be 
 `Run.bat`: By executing this file from windows terminal both algorithms in `Algorithm.java` and `Algorithm.py` will path find according to the user input.
 
 `Run.sh`: Like the previous file, by executing this file from **_linux_** terminal both algorithms in both files will start path finding according to the user input.
-
-<hr>
 
 ## Running the project
 

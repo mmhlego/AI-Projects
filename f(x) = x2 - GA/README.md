@@ -10,22 +10,20 @@ We try to achieve this goal using **Genetic Algorithm** principles like mutation
 
 This project is written in C++ language and no third-party library was used.
 
-<hr>
-
 ## Project Files
 
 `constants.cpp`: This file contains all settings for our genetic algorithm. Here is the list of settings:
 
--   **chromosome**: Determines the chromosome structure. since we are using 8 bits in our chromosome, the default value is set to `uint8_t` which represents an unsigned 8-bit integer.
--   **Size**: Size of our population. aka number of chromosomes that together fom a population and different operations apply to them, for example crossover, mutation and etc. The default value is set to `10`.
--   **MaxIterationCount**: Maximum number of iterations is one of the stopping conditions that stops the algorithm if the current iteration passes that number. The default value is set to `10`.
--   **ChromosomeLength**: Determines length of the chromosome. Since we are using 8 bits to define a chromosome, the default value is set to `8`.
--   **MutationPercent**: Probability for a chromosome to mutate and flip on of its bits. value is shown in `X %` format and the default value is set to `20`.
--   **ReproduceMethod**: Determines the algorithm to select and reproduce offsprings from the current population. This field can accept the values `0` as [Roulette Wheel Selection](https://www.baeldung.com/cs/genetic-algorithms-roulette-selection) or `1` as [Tournament Selection](https://en.wikipedia.org/wiki/Tournament_selection).
--   **ShowEachStep**: If set to `true` prints the chromosome data table.
--   **TournamentSize**: An integer that shows of the size of the tournament in **Tournament Selection** and is used whenever **ReproduceMethod** is set to `1`.
--   **ShowCrossovers**: Set to `true` if you want to log each crossover operation. otherwise set to `false`.
--   **ShowMutations**: Set to `true` if you want to log each mutation operation. otherwise set to `false`.
+-   `chromosome`: Determines the chromosome structure. since we are using 8 bits in our chromosome, the default value is set to `uint8_t` which represents an unsigned 8-bit integer.
+-   `Size`: Size of our population. aka number of chromosomes that together fom a population and different operations apply to them, for example crossover, mutation and etc. The default value is set to `10` chromosomes.
+-   `MaxIterationCount`: Maximum number of iterations is one of the stopping conditions that stops the algorithm if the current iteration passes that number. The default value is set to `10` iterations.
+-   `ChromosomeLength`: Determines length of the chromosome. Since we are using 8 bits to define a chromosome, the default value is set to `8` bits.
+-   `MutationPercent`: Probability for a chromosome to mutate and flip on of its bits. value is shown in `X %` format and the default value is set to `20` percent.
+-   `ReproduceMethod`: Determines the algorithm to select and reproduce offsprings from the current population. This field can accept the values `0` as [Roulette Wheel Selection](https://www.baeldung.com/cs/genetic-algorithms-roulette-selection) or `1` as [Tournament Selection](https://en.wikipedia.org/wiki/Tournament_selection).
+-   `ShowEachStep`: If set to `true` prints the chromosome data table.
+-   `TournamentSize`: An integer that shows of the size of the tournament and is used whenever **ReproduceMethod** is set **Tournament Selection** mode. The default value is set to `3`.
+-   `ShowCrossovers`: Set to `true` if you want to log each crossover operation. otherwise set to `false`.
+-   `ShowMutations`: Set to `true` if you want to log each mutation operation. otherwise set to `false`.
 
 `chromosome.cpp`: Implements all methods related to chromosomes including:
 
@@ -73,8 +71,6 @@ This project is written in C++ language and no third-party library was used.
     3. If maximum value for a chromosome is reached _(Maximum value = 65025)_
 
     If any of these conditions is true, the algorithm will stop.
-
-<hr>
 
 ## Running the project
 
